@@ -1,23 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { usePosition } from "use-position";
+import Zomato from "./components/Zomato";
 
 function App() {
+  const { latitude, longitude } = usePosition();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Zomato latitude={latitude} longitude={longitude} />
     </div>
   );
 }
