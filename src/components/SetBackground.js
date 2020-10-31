@@ -19,7 +19,7 @@ const SetBackground = () => {
     const [ bgImg, setBgImg ] = useState(null);
 
     useEffect(() => {
-        fetchBackground(props).then(img => {
+        fetchBackground().then(img => {
             setBgImg(bgImg);
         }, []);
     });
