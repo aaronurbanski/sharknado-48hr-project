@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import { usePosition } from "use-position";
+// import Zomato from "./components/Zomato";
+import OpenWeather from "./components/OpenWeather";
 
 function App() {
+  const { latitude, longitude } = usePosition();
+  const [location, setLocation] = useState({});
+  useEffect(() => {
+    setLocation({latitude: latitude, longitude: longitude})
+    console.log(latitude, longitude)
+  }, [latitude, longitude]);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <OpenWeather latitude={location.latitude} longitude={location.longitude} />
     </div>
   );
 }

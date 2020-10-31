@@ -1,58 +1,47 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Switch from '@material-ui/core/Switch';
 
 //api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
 
-const openWeather = (props) => {
+const OpenWeather = (props) => {
 
-    const [lat, setLat] = useState('') //unsure of where to set setLat/Long
-    const [long, setLong] = useState('')
+  const [results, setResults] = useState("");
+  const { latitude, longitude } = props;
+
+
+
+
 
     const baseURL = 'https://api.openweathermap.org/data/2.5/weather';
     const key = 'b7958e839f70944ee351c9725be8c02d';
 
-    const fetchWeather = () => {
-        let url = `${baseURL}?lat=${lat}&lon=${long}&appid=${key}`;
+    useEffect(() => {
+      if (latitude && longitude) {
 
-
-        const handleSubmit = (event) => {
-            fetchWeather();
-            event.preventDefault();
-          }
+      //  console.log(latitude, longitude);
+      
+      let url = `${baseURL}?lat=${latitude}&lon=${longitude}&appid=${key}`;
     
         fetch(url)
           .then(res => res.json())
-          .then(data => setResults(data.response.docs))
-          .catch(err => console.log(err));
-      }
+          .then((json) => {
+            console.log(json);
+            setResults(json);
+          })       
+           .catch(err => console.log(err))
+    }
+    }, [latitude, longitude]);
 
-      const Switches = () => {
-        const [state, setState] = React.useState({
-          checkedA: true,
-          checkedB: true,
-        });
-      
-        const handleChange = (event) => {
-          setState({ ...state, [event.target.name]: event.target.checked });
-        };
-      
-
-//double check switch syntax
-
-        //result. syntax may be an issue + result.icon will have type issues -> call another api?
 
       return(
-          <div key={result.weather}>
-            <h2>{result.main}</h2>
-            {result.icon} 
-            <p> {result.temp}</p>
-            <Switch inputProps={{ 'aria-label': 'primary checkbox' }} />
-          </div>
+        <div>
+          <p>{results.base}</p>
+        </div>
 
       );
 };
 
-export default openWeather;
+export default OpenWeather;
 
 //example json result
 
@@ -94,4 +83,39 @@ export default openWeather;
      "id": 1851632,
      "name": "Shuzenji",
      "cod": 200
-     } */
+     } 
+     
+           <div key={result.weather}>
+           <h2>{result.main}</h2>
+            {result.icon} 
+            <p> {result.temp}</p>
+          <Switch inputProps={{ 'aria-label': 'primary checkbox' }} />
+      </div>
+     
+
+      
+     // const Switches = () => {
+      //  const [state, setState] = React.useState({
+    //      checkedA: true,
+     //     checkedB: true,
+     //   });
+
+  
+      
+     //   const handleChange = (event) => {
+     //     setState({ ...state, [event.target.name]: event.target.checked });
+      //  };
+
+
+      //      if ( switchB === true) {
+
+       //     } else {
+
+         //   };
+
+//double check switch syntax
+
+        //result. syntax may be an issue + result.icon will have type issues -> call another api?
+     
+     
+     */
