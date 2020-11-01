@@ -1,17 +1,26 @@
+import './App.css';
 import React, { useState, useEffect } from "react";
 import { usePosition } from "use-position";
-import "./App.css";
-import Zomato from "./components/Zomato";
+import 'fontsource-roboto';
+import Navtabs from './components/Navtabs';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 function App() {
   const { latitude, longitude } = usePosition();
   const [location, setLocation] = useState({});
+  const darkTheme = createMuiTheme( {
+    palette: {
+      type: 'dark',
+    }
+  });
   useEffect(() => {
     setLocation({ latitude: latitude, longitude: longitude });
   }, [latitude, longitude]);
   return (
     <div className="App">
-      <Zomato latitude={location.latitude} longitude={location.longitude} />
+      <ThemeProvider theme={darkTheme}>
+      <Navtabs latitude={location.latitude} longitude={location.longitude}/>
+        </ThemeProvider>
     </div>
   );
 }
