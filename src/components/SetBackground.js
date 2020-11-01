@@ -9,7 +9,7 @@ const NasaBg = (props) => {
     useEffect(() => {
       console.log(latitude, longitude);
       if (latitude && longitude) {
-        let url = `https://api.nasa.gov/planetary/earth/assets?lon=${longitude}&lat=${latitude}&date=2020-09-01&dim=0.60&api_key=${apiKey}`;
+        let url = `https://api.nasa.gov/planetary/earth/assets?lon=${longitude}&lat=${latitude}&date=2020-09-01&dim=0.2&api_key=${apiKey}`;
         console.log(url);
         fetch(url)
           .then((res) => res.json())

@@ -4,14 +4,11 @@ import Switch from '@material-ui/core/Switch';
 //api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
 
 const OpenWeather = (props) => {
-
-  const [results, setResults] = useState("");
+  const [ units, setUnits ] = useState("F");
+  const [results, setResults] = useState({main: {temp: ""}, weather: [""]});
   const { latitude, longitude } = props;
 
-
-
-
-
+  const handleChange = () => setUnits(units === "F"? "C" : "F") ;
     const baseURL = 'https://api.openweathermap.org/data/2.5/weather';
     const key = 'b7958e839f70944ee351c9725be8c02d';
 
@@ -20,7 +17,7 @@ const OpenWeather = (props) => {
 
       //  console.log(latitude, longitude);
       
-      let url = `${baseURL}?lat=${latitude}&lon=${longitude}&appid=${key}`;
+      let url = `${baseURL}?lat=${latitude}&lon=${longitude}&appid=${key}&units=imperial`;
     
         fetch(url)
           .then(res => res.json())
@@ -35,7 +32,13 @@ const OpenWeather = (props) => {
 
       return(
         <div>
-          <p>{results.base}</p>
+          <p>{units === "F" ? results.main.temp : (results.main.temp - 32) * 5/9} {units}</p>
+          <p><img src={`https://openweathermap.org/img/wn/${results.weather[0].icon}.png`} alt="icon" /></p>
+          <Switch
+            checked={units === "F" ? true : false}
+            onChange={handleChange}
+          />
+          <p>Celsius / Fahrenheit</p>
         </div>
 
       );
