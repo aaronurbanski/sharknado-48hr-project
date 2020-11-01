@@ -4,7 +4,7 @@ import { usePosition } from "use-position";
 
 const NasaBg = (props) => {
     const [ bg, setBg ] = useState('');
-    const { latitude, longitude } = usePosition();
+    const { latitude, longitude } = props;
     const apiKey = "Dj8U9a8JioutiPstpuNbidkgDxSidhRYfXJQNcUI";
     useEffect(() => {
       console.log(latitude, longitude);

@@ -12,6 +12,7 @@ import RestaurantIcon from '@material-ui/icons/Restaurant';
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
 import Zomato from './Zomato';
 import SetBackground from './SetBackground';
+import OpenWeather from './OpenWeather';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -93,13 +94,13 @@ export default function NavTabs() {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <SetBackground/>
+        <SetBackground latitude={location.latitude} longitude={location.longitude}/>
       </TabPanel>
       <TabPanel value={value} index={1}>
         <Zomato latitude={location.latitude} longitude={location.longitude} />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Page Three
+        <OpenWeather latitude={location.latitude} longitude={location.longitude}/>
       </TabPanel>
     </div>
   );
