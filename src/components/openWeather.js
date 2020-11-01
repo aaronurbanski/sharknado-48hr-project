@@ -20,7 +20,7 @@ const OpenWeather = (props) => {
 
       //  console.log(latitude, longitude);
       
-      let url = `${baseURL}?lat=${latitude}&lon=${longitude}&appid=${key}`;
+      let url = `${baseURL}?lat=${latitude}&lon=${longitude}&units=imperial&appid=${key}`;
     
         fetch(url)
           .then(res => res.json())
@@ -35,10 +35,16 @@ const OpenWeather = (props) => {
 
       return(
         <div>
-          <p>{results.base}</p>
+
+          <p>{results.main.temp}</p>
+          <img src={`http://openweathermap.org/img/wn/${results.weather[0].icon}.png`} />
+
         </div>
 
       );
+
+
+
 };
 
 export default OpenWeather;
@@ -115,7 +121,33 @@ export default OpenWeather;
 
 //double check switch syntax
 
-        //result. syntax may be an issue + result.icon will have type issues -> call another api?
+
+   const Switches = () => {
+  const [state, setState] = React.useState({
+        checkedA: true,
+        checkedB: true,
+     
+      });
+
+  
+      
+  const handleChange = (event) => {
+     setState({ ...state, [event.target.name]: event.target.checked });
+      };
+
+
+
+    return(
+         <div>
+        <Switch
+           defaultChecked
+          color="default"
+          inputProps={{ 'aria-label': 'checkbox with default color' }}
+            />         
+             </div>
+            )
+
+
      
      
      */
