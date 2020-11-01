@@ -1,37 +1,33 @@
-import { ContactSupportOutlined } from '@material-ui/icons';
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect } from 'react';
+import { usePosition } from "use-position";
 
 
-let lon = -86.89;
-let lat = 41.70;
-let url =`https://api.nasa.gov/planetary/earth/assets?lon=${lon}&lat=${lat}&date=2020-09-01&dim=0.60&api_key=Dj8U9a8JioutiPstpuNbidkgDxSidhRYfXJQNcUI`;
-
-const fetchBackground = () => {
-    fetch(url)
-    .then(res => res.json())
-    .then(json => console.log(json))
-    .catch(err => console.log(err));
-}
-
-const SetBackground = () => {
-
-    const [ bgImg, setBgImg ] = useState(null);
-
+const NasaBg = (props) => {
+    const [ bg, setBg ] = useState('');
+    const { latitude, longitude } = usePosition();
+    const apiKey = "Dj8U9a8JioutiPstpuNbidkgDxSidhRYfXJQNcUI";
     useEffect(() => {
-        fetchBackground().then(img => {
-            setBgImg(bgImg);
-        }, []);
-    });
-
-
-
-
+      console.log(latitude, longitude);
+      if (latitude && longitude) {
+        let url = `https://api.nasa.gov/planetary/earth/assets?lon=${longitude}&lat=${latitude}&date=2020-09-01&dim=0.60&api_key=${apiKey}`;
+        console.log(url);
+        fetch(url)
+          .then((res) => res.json())
+          .then((json) => {
+            console.log(json);
+            setBg(json.url);
+          })
+          .catch((err) => console.log(err));
+      }
+    }, [latitude, longitude]);
     return (
-        <div style={{backgroundImage: `url(${bgImg})`, backgroundSize: 'cover', height: '100vh'}}>
-        </div>
-    )
+      <div>
+        <h1>Smile, you're on NASA cam...</h1>
+            <div style={{backgroundImage: `url(${bg})`, backgroundSize: 'cover', height: '100vh'}}>
+            </div>
+      </div>
+    );
+  };
 
-} 
-
-export default SetBackground;
+  
+export default NasaBg;

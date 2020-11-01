@@ -14,7 +14,7 @@ function App() {
   }, [latitude, longitude]);
   return (
     <div className="App">
-      <Navtabs />
+      <Navtabs latitude={location.latitude} longitude={location.longitude}/>
     </div>
   );
 }
