@@ -5,8 +5,13 @@ import Switch from '@material-ui/core/Switch';
 
 const OpenWeather = (props) => {
 
+  let [units, setUnits] = useState("F");
+
   const [results, setResults] = useState("");
   const { latitude, longitude } = props;
+
+  console.log(latitude);
+
 
 
 
@@ -33,10 +38,12 @@ const OpenWeather = (props) => {
     }, [latitude, longitude]);
 
 
+
+
       return(
         <div>
 
-          <p>{results.main.temp}</p>
+      <p>{results.main.temp}</p>
           <img src={`http://openweathermap.org/img/wn/${results.weather[0].icon}.png`} />
 
         </div>
