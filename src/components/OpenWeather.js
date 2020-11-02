@@ -33,7 +33,7 @@ const OpenWeather = (props) => {
       return(
         <div>
           <p>{units === "F" ? results.main.temp : (results.main.temp - 32) * 5/9} {units}</p>
-          <p><img src={`https://openweathermap.org/img/wn/${results.weather[0].icon}.png`} alt="icon" /></p>
+      <p><img src={`https://openweathermap.org/img/wn/${results.weather[0].icon}.png`} alt="icon" /><br/><span>{results.weather[0].description}</span></p>
           <Switch
             checked={units === "F" ? true : false}
             onChange={handleChange}

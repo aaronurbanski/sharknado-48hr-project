@@ -4,6 +4,7 @@ import { usePosition } from "use-position";
 import 'fontsource-roboto';
 import Navtabs from './components/Navtabs';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import BottomAppBar from './components/BottomBar';
 
 function App() {
   const { latitude, longitude } = usePosition();
@@ -20,7 +21,8 @@ function App() {
     <div className="App">
       <ThemeProvider theme={darkTheme}>
       <Navtabs latitude={location.latitude} longitude={location.longitude}/>
-        </ThemeProvider>
+      <BottomAppBar latitude={location.latitude} longitude={location.longitude}/>
+      </ThemeProvider>
     </div>
   );
 }
