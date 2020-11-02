@@ -5,11 +5,14 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import GlobeIcon from '@material-ui/icons/Language';
+import './BottomBar.css'
 
 
 const useStyles = makeStyles((theme) => ({
   text: {
-    padding: theme.spacing(2, 2, 0),
+    padding: theme.spacing(1),
+    textTransform: 'uppercase',
+    fontSize: '.3em'
   },
   paper: {
     paddingBottom: 50,
@@ -23,17 +26,10 @@ const useStyles = makeStyles((theme) => ({
   appBar: {
     top: 'auto',
     bottom: 0,
+    alignItems: 'center'
   },
   grow: {
     flexGrow: 1,
-  },
-  fabButton: {
-    position: 'absolute',
-    zIndex: 1,
-    top: -30,
-    left: 0,
-    right: 0,
-    margin: '0 auto',
   },
 }));
 
@@ -47,7 +43,8 @@ export default function BottomAppBar(props) {
         <Toolbar>
           <div className={classes.grow} />
          <Typography>
-         <GlobeIcon />             Longitude: {longitude} // Latitude: {latitude}
+         
+         <p><GlobeIcon /><br/><span>Longitude: {longitude} <br/> Latitude: {latitude}</span></p>
          </Typography>
         </Toolbar>
       </AppBar>
