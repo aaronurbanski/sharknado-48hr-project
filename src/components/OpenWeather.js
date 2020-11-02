@@ -1,3 +1,4 @@
+import './OpenWeather.css';
 import React, {useEffect, useState} from 'react';
 import Switch from '@material-ui/core/Switch';
 
