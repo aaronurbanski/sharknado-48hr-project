@@ -4,12 +4,8 @@ import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import Fab from '@material-ui/core/Fab';
-import MenuIcon from '@material-ui/icons/Menu';
-import AddIcon from '@material-ui/icons/Add';
-import SearchIcon from '@material-ui/icons/Search';
-import MoreIcon from '@material-ui/icons/MoreVert';
+import GlobeIcon from '@material-ui/icons/Language';
+
 
 const useStyles = makeStyles((theme) => ({
   text: {
@@ -51,7 +47,7 @@ export default function BottomAppBar(props) {
         <Toolbar>
           <div className={classes.grow} />
          <Typography>
-            Longitude: {longitude} // Latitude: {latitude}
+         <GlobeIcon />             Longitude: {longitude} // Latitude: {latitude}
          </Typography>
         </Toolbar>
       </AppBar>
